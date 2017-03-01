@@ -76,6 +76,6 @@ Public Class PaymentData
 
     Public Property ID As Integer Implements IHasID.ID
     Public Property TennantID As Integer
-    Public Property Amount As Decimal
-    Public Property PaymentDate As Date
+    Public Property Amount As Decimal?
+    Public Property PaymentDate As Date?
 End Class

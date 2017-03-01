@@ -8,10 +8,13 @@
     Public Overrides Function GetAllItems() As IEnumerable(Of RunningCostData)
         Dim list As New List(Of RunningCostData)
         Dim cont As New SharedRunningCostsDataContext
-        For Each entityitem In cont.GetContractCosts(ParentID)
-            Dim newdataitem As RunningCostData = ToData(entityitem)
-            list.Add(newdataitem)
-        Next
+        Dim costs = cont.GetContractCosts(ParentID)
+        If Not IsNothing(costs) Then
+            For Each entityitem In costs
+                Dim newdataitem As RunningCostData = ToData(entityitem)
+                list.Add(newdataitem)
+            Next
+        End If
         Return list
     End Function
 

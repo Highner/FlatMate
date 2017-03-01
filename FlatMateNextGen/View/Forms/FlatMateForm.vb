@@ -16,6 +16,7 @@
         ContractGrid.BindToListViewModel(MainViewModel, "ContractVM")
         RentedRoomGrid.BindToListViewModel(MainViewModel, "RentedRoomVM")
         SharedRunningCostGrid.BindToListViewModel(MainViewModel, "SharedRunningCostVM")
+        PaymentGrid.BindToListViewModel(MainViewModel, "PaymentVM")
         MainViewModel.GetData()
     End Sub
 

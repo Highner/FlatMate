@@ -173,6 +173,7 @@
     <Compile Include="ViewModel\ItemViewModels\ContractItemViewModel.vb" />
     <Compile Include="ViewModel\ItemViewModels\FlatIncomeItemViewModel.vb" />
     <Compile Include="ViewModel\ItemViewModels\FlatItemViewModel.vb" />
+    <Compile Include="ViewModel\ItemViewModels\PaymentItemViewModel.vb" />
     <Compile Include="ViewModel\ItemViewModels\RentedRoomItemViewModel.vb" />
     <Compile Include="ViewModel\ItemViewModels\RentItemViewModel.vb" />
     <Compile Include="ViewModel\ItemViewModels\RoomItemViewModel.vb" />
@@ -181,6 +182,7 @@
     <Compile Include="ViewModel\ItemViewModels\TennantItemViewModel.vb" />
     <Compile Include="ViewModel\ListViewModels\ContractListViewModel.vb" />
     <Compile Include="ViewModel\ListViewModels\FlatIncomeListViewModel.vb" />
+    <Compile Include="ViewModel\ListViewModels\PaymentListViewModel.vb" />
     <Compile Include="ViewModel\ListViewModels\RentedRoomListViewModel.vb" />
     <Compile Include="ViewModel\ListViewModels\RentListViewModel.vb" />
     <Compile Include="ViewModel\ListViewModels\RoomListViewModel.vb" />
@@ -195,6 +197,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Controls\FlatIncomeGrid.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Controls\PaymentGrid.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Controls\RentedRoomGrid.vb">

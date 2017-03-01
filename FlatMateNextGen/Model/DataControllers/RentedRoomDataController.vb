@@ -8,10 +8,13 @@
     Public Overrides Function GetAllItems() As IEnumerable(Of RoomData)
         Dim list As New List(Of RoomData)
         Dim cont As New RentedRoomDataContext
-        For Each entityitem In cont.GetContractRooms(ParentID)
-            Dim newdataitem As RoomData = ToData(entityitem)
-            list.Add(newdataitem)
-        Next
+        Dim rooms = cont.GetContractRooms(ParentID)
+        If Not IsNothing(rooms) Then
+            For Each entityitem In rooms
+                Dim newdataitem As RoomData = ToData(entityitem)
+                list.Add(newdataitem)
+            Next
+        End If
         Return list
     End Function
 

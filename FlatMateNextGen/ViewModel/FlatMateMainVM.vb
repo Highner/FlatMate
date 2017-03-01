@@ -11,6 +11,7 @@
     Public WithEvents ContractVM As New ContractListViewModel(0)
     Public WithEvents RentedRoomVM As New RentedRoomListViewModel(0)
     Public WithEvents SharedRunningCostVM As New SharedRunningCostListViewModel(0)
+    Public WithEvents PaymentVM As New PaymentListViewModel(0)
 
 
     Private Sub LoadFlatChildren() Handles FlatVM.SelectedItemChanged
@@ -30,6 +31,8 @@
     Private Sub LoadTennantChildren() Handles TennantVM.SelectedItemChanged
         ContractVM = New ContractListViewModel(TennantVM.SelectedItemID)
         ContractVM.GetData()
+        PaymentVM = New PaymentListViewModel(TennantVM.SelectedItemID)
+        PaymentVM.GetData()
         RaiseLoadingCompleted()
     End Sub
 

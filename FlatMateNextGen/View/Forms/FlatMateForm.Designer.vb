@@ -28,32 +28,33 @@ Partial Class FlatMateForm
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.SplitContainerMain = New System.Windows.Forms.SplitContainer()
         Me.SplitContainerLeft = New System.Windows.Forms.SplitContainer()
-        Me.FlatGrid = New FlatMateNextGen.FlatGrid()
-        Me.TennantGrid = New FlatMateNextGen.TennantGrid()
         Me.TabControlMain = New System.Windows.Forms.TabControl()
         Me.FlatDetailsTabPage = New System.Windows.Forms.TabPage()
         Me.TabControlDetails = New System.Windows.Forms.TabControl()
         Me.RoomsTabPage = New System.Windows.Forms.TabPage()
-        Me.RoomGrid = New FlatMateNextGen.RoomGrid()
         Me.RentTabPage = New System.Windows.Forms.TabPage()
-        Me.RentGrid = New FlatMateNextGen.RentGrid()
         Me.RunningCostsTabPage = New System.Windows.Forms.TabPage()
-        Me.RunningCostGrid = New FlatMateNextGen.RunningCostGrid()
         Me.IncomeTabPage = New System.Windows.Forms.TabPage()
-        Me.FlatIncomeGrid = New FlatMateNextGen.FlatIncomeGrid()
         Me.RentOverviewTabPage = New System.Windows.Forms.TabPage()
         Me.ChartTabPage = New System.Windows.Forms.TabPage()
         Me.TennantsTabPage = New System.Windows.Forms.TabPage()
         Me.TabControlTennants = New System.Windows.Forms.TabControl()
         Me.ContractsTabPage = New System.Windows.Forms.TabPage()
         Me.SplitContainerContracts = New System.Windows.Forms.SplitContainer()
-        Me.ContractGrid = New FlatMateNextGen.ContractGrid()
         Me.SplitContainerContractDetails = New System.Windows.Forms.SplitContainer()
-        Me.RentedRoomGrid = New FlatMateNextGen.RentedRoomGrid()
         Me.PaymentsTabPage = New System.Windows.Forms.TabPage()
         Me.TennantRentTabPage = New System.Windows.Forms.TabPage()
         Me.LabelStrip = New HynrFramework.HynrLabelStrip()
+        Me.FlatGrid = New FlatMateNextGen.FlatGrid()
+        Me.TennantGrid = New FlatMateNextGen.TennantGrid()
+        Me.RoomGrid = New FlatMateNextGen.RoomGrid()
+        Me.RentGrid = New FlatMateNextGen.RentGrid()
+        Me.RunningCostGrid = New FlatMateNextGen.RunningCostGrid()
+        Me.FlatIncomeGrid = New FlatMateNextGen.FlatIncomeGrid()
+        Me.ContractGrid = New FlatMateNextGen.ContractGrid()
+        Me.RentedRoomGrid = New FlatMateNextGen.RentedRoomGrid()
         Me.SharedRunningCostGrid = New FlatMateNextGen.SharedRunningCostGrid()
+        Me.PaymentGrid = New FlatMateNextGen.PaymentGrid()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.SplitContainerMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerMain.Panel1.SuspendLayout()
@@ -63,19 +64,13 @@ Partial Class FlatMateForm
         Me.SplitContainerLeft.Panel1.SuspendLayout()
         Me.SplitContainerLeft.Panel2.SuspendLayout()
         Me.SplitContainerLeft.SuspendLayout()
-        CType(Me.FlatGrid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TennantGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlMain.SuspendLayout()
         Me.FlatDetailsTabPage.SuspendLayout()
         Me.TabControlDetails.SuspendLayout()
         Me.RoomsTabPage.SuspendLayout()
-        CType(Me.RoomGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RentTabPage.SuspendLayout()
-        CType(Me.RentGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RunningCostsTabPage.SuspendLayout()
-        CType(Me.RunningCostGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.IncomeTabPage.SuspendLayout()
-        CType(Me.FlatIncomeGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TennantsTabPage.SuspendLayout()
         Me.TabControlTennants.SuspendLayout()
         Me.ContractsTabPage.SuspendLayout()
@@ -83,13 +78,21 @@ Partial Class FlatMateForm
         Me.SplitContainerContracts.Panel1.SuspendLayout()
         Me.SplitContainerContracts.Panel2.SuspendLayout()
         Me.SplitContainerContracts.SuspendLayout()
-        CType(Me.ContractGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerContractDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerContractDetails.Panel1.SuspendLayout()
         Me.SplitContainerContractDetails.Panel2.SuspendLayout()
         Me.SplitContainerContractDetails.SuspendLayout()
+        Me.PaymentsTabPage.SuspendLayout()
+        CType(Me.FlatGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TennantGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RoomGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RentGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RunningCostGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FlatIncomeGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ContractGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RentedRoomGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SharedRunningCostGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PaymentGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -146,40 +149,6 @@ Partial Class FlatMateForm
         Me.SplitContainerLeft.SplitterDistance = 178
         Me.SplitContainerLeft.TabIndex = 3
         '
-        'FlatGrid
-        '
-        Me.FlatGrid.AllowUserToAddRows = False
-        Me.FlatGrid.AllowUserToDeleteRows = False
-        Me.FlatGrid.BindingSourceDataSource = Nothing
-        Me.FlatGrid.CancellationSource = Nothing
-        Me.FlatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FlatGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlatGrid.HynrSettings = Nothing
-        Me.FlatGrid.IsBusy = False
-        Me.FlatGrid.Location = New System.Drawing.Point(0, 0)
-        Me.FlatGrid.Name = "FlatGrid"
-        Me.FlatGrid.SelectedItem = Nothing
-        Me.FlatGrid.SelectedItems = Nothing
-        Me.FlatGrid.Size = New System.Drawing.Size(158, 178)
-        Me.FlatGrid.TabIndex = 2
-        '
-        'TennantGrid
-        '
-        Me.TennantGrid.AllowUserToAddRows = False
-        Me.TennantGrid.AllowUserToDeleteRows = False
-        Me.TennantGrid.BindingSourceDataSource = Nothing
-        Me.TennantGrid.CancellationSource = Nothing
-        Me.TennantGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TennantGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TennantGrid.HynrSettings = Nothing
-        Me.TennantGrid.IsBusy = False
-        Me.TennantGrid.Location = New System.Drawing.Point(0, 0)
-        Me.TennantGrid.Name = "TennantGrid"
-        Me.TennantGrid.SelectedItem = Nothing
-        Me.TennantGrid.SelectedItems = Nothing
-        Me.TennantGrid.Size = New System.Drawing.Size(158, 345)
-        Me.TennantGrid.TabIndex = 0
-        '
         'TabControlMain
         '
         Me.TabControlMain.Controls.Add(Me.FlatDetailsTabPage)
@@ -228,23 +197,6 @@ Partial Class FlatMateForm
         Me.RoomsTabPage.Text = "Rooms"
         Me.RoomsTabPage.UseVisualStyleBackColor = True
         '
-        'RoomGrid
-        '
-        Me.RoomGrid.AllowUserToAddRows = False
-        Me.RoomGrid.AllowUserToDeleteRows = False
-        Me.RoomGrid.BindingSourceDataSource = Nothing
-        Me.RoomGrid.CancellationSource = Nothing
-        Me.RoomGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.RoomGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RoomGrid.HynrSettings = Nothing
-        Me.RoomGrid.IsBusy = False
-        Me.RoomGrid.Location = New System.Drawing.Point(0, 0)
-        Me.RoomGrid.Name = "RoomGrid"
-        Me.RoomGrid.SelectedItem = Nothing
-        Me.RoomGrid.SelectedItems = Nothing
-        Me.RoomGrid.Size = New System.Drawing.Size(898, 385)
-        Me.RoomGrid.TabIndex = 0
-        '
         'RentTabPage
         '
         Me.RentTabPage.Controls.Add(Me.RentGrid)
@@ -254,23 +206,6 @@ Partial Class FlatMateForm
         Me.RentTabPage.TabIndex = 1
         Me.RentTabPage.Text = "Rent"
         Me.RentTabPage.UseVisualStyleBackColor = True
-        '
-        'RentGrid
-        '
-        Me.RentGrid.AllowUserToAddRows = False
-        Me.RentGrid.AllowUserToDeleteRows = False
-        Me.RentGrid.BindingSourceDataSource = Nothing
-        Me.RentGrid.CancellationSource = Nothing
-        Me.RentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.RentGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RentGrid.HynrSettings = Nothing
-        Me.RentGrid.IsBusy = False
-        Me.RentGrid.Location = New System.Drawing.Point(0, 0)
-        Me.RentGrid.Name = "RentGrid"
-        Me.RentGrid.SelectedItem = Nothing
-        Me.RentGrid.SelectedItems = Nothing
-        Me.RentGrid.Size = New System.Drawing.Size(898, 385)
-        Me.RentGrid.TabIndex = 0
         '
         'RunningCostsTabPage
         '
@@ -282,23 +217,6 @@ Partial Class FlatMateForm
         Me.RunningCostsTabPage.Text = "Running Costs"
         Me.RunningCostsTabPage.UseVisualStyleBackColor = True
         '
-        'RunningCostGrid
-        '
-        Me.RunningCostGrid.AllowUserToAddRows = False
-        Me.RunningCostGrid.AllowUserToDeleteRows = False
-        Me.RunningCostGrid.BindingSourceDataSource = Nothing
-        Me.RunningCostGrid.CancellationSource = Nothing
-        Me.RunningCostGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.RunningCostGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RunningCostGrid.HynrSettings = Nothing
-        Me.RunningCostGrid.IsBusy = False
-        Me.RunningCostGrid.Location = New System.Drawing.Point(0, 0)
-        Me.RunningCostGrid.Name = "RunningCostGrid"
-        Me.RunningCostGrid.SelectedItem = Nothing
-        Me.RunningCostGrid.SelectedItems = Nothing
-        Me.RunningCostGrid.Size = New System.Drawing.Size(898, 385)
-        Me.RunningCostGrid.TabIndex = 0
-        '
         'IncomeTabPage
         '
         Me.IncomeTabPage.Controls.Add(Me.FlatIncomeGrid)
@@ -308,23 +226,6 @@ Partial Class FlatMateForm
         Me.IncomeTabPage.TabIndex = 3
         Me.IncomeTabPage.Text = "Income"
         Me.IncomeTabPage.UseVisualStyleBackColor = True
-        '
-        'FlatIncomeGrid
-        '
-        Me.FlatIncomeGrid.AllowUserToAddRows = False
-        Me.FlatIncomeGrid.AllowUserToDeleteRows = False
-        Me.FlatIncomeGrid.BindingSourceDataSource = Nothing
-        Me.FlatIncomeGrid.CancellationSource = Nothing
-        Me.FlatIncomeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FlatIncomeGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlatIncomeGrid.HynrSettings = Nothing
-        Me.FlatIncomeGrid.IsBusy = False
-        Me.FlatIncomeGrid.Location = New System.Drawing.Point(0, 0)
-        Me.FlatIncomeGrid.Name = "FlatIncomeGrid"
-        Me.FlatIncomeGrid.SelectedItem = Nothing
-        Me.FlatIncomeGrid.SelectedItems = Nothing
-        Me.FlatIncomeGrid.Size = New System.Drawing.Size(898, 385)
-        Me.FlatIncomeGrid.TabIndex = 0
         '
         'RentOverviewTabPage
         '
@@ -395,23 +296,6 @@ Partial Class FlatMateForm
         Me.SplitContainerContracts.SplitterDistance = 299
         Me.SplitContainerContracts.TabIndex = 0
         '
-        'ContractGrid
-        '
-        Me.ContractGrid.AllowUserToAddRows = False
-        Me.ContractGrid.AllowUserToDeleteRows = False
-        Me.ContractGrid.BindingSourceDataSource = Nothing
-        Me.ContractGrid.CancellationSource = Nothing
-        Me.ContractGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ContractGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ContractGrid.HynrSettings = Nothing
-        Me.ContractGrid.IsBusy = False
-        Me.ContractGrid.Location = New System.Drawing.Point(0, 0)
-        Me.ContractGrid.Name = "ContractGrid"
-        Me.ContractGrid.SelectedItem = Nothing
-        Me.ContractGrid.SelectedItems = Nothing
-        Me.ContractGrid.Size = New System.Drawing.Size(299, 343)
-        Me.ContractGrid.TabIndex = 0
-        '
         'SplitContainerContractDetails
         '
         Me.SplitContainerContractDetails.Dock = System.Windows.Forms.DockStyle.Fill
@@ -430,25 +314,9 @@ Partial Class FlatMateForm
         Me.SplitContainerContractDetails.SplitterDistance = 177
         Me.SplitContainerContractDetails.TabIndex = 0
         '
-        'RentedRoomGrid
-        '
-        Me.RentedRoomGrid.AllowUserToAddRows = False
-        Me.RentedRoomGrid.AllowUserToDeleteRows = False
-        Me.RentedRoomGrid.BindingSourceDataSource = Nothing
-        Me.RentedRoomGrid.CancellationSource = Nothing
-        Me.RentedRoomGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.RentedRoomGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RentedRoomGrid.HynrSettings = Nothing
-        Me.RentedRoomGrid.IsBusy = False
-        Me.RentedRoomGrid.Location = New System.Drawing.Point(0, 0)
-        Me.RentedRoomGrid.Name = "RentedRoomGrid"
-        Me.RentedRoomGrid.SelectedItem = Nothing
-        Me.RentedRoomGrid.SelectedItems = Nothing
-        Me.RentedRoomGrid.Size = New System.Drawing.Size(595, 177)
-        Me.RentedRoomGrid.TabIndex = 0
-        '
         'PaymentsTabPage
         '
+        Me.PaymentsTabPage.Controls.Add(Me.PaymentGrid)
         Me.PaymentsTabPage.Location = New System.Drawing.Point(4, 22)
         Me.PaymentsTabPage.Name = "PaymentsTabPage"
         Me.PaymentsTabPage.Size = New System.Drawing.Size(898, 343)
@@ -475,6 +343,142 @@ Partial Class FlatMateForm
         Me.LabelStrip.TabIndex = 1
         Me.LabelStrip.Text = "HynrLabelStrip1"
         '
+        'FlatGrid
+        '
+        Me.FlatGrid.AllowUserToAddRows = False
+        Me.FlatGrid.AllowUserToDeleteRows = False
+        Me.FlatGrid.BindingSourceDataSource = Nothing
+        Me.FlatGrid.CancellationSource = Nothing
+        Me.FlatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.FlatGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlatGrid.HynrSettings = Nothing
+        Me.FlatGrid.IsBusy = False
+        Me.FlatGrid.Location = New System.Drawing.Point(0, 0)
+        Me.FlatGrid.Name = "FlatGrid"
+        Me.FlatGrid.SelectedItem = Nothing
+        Me.FlatGrid.SelectedItems = Nothing
+        Me.FlatGrid.Size = New System.Drawing.Size(158, 178)
+        Me.FlatGrid.TabIndex = 2
+        '
+        'TennantGrid
+        '
+        Me.TennantGrid.AllowUserToAddRows = False
+        Me.TennantGrid.AllowUserToDeleteRows = False
+        Me.TennantGrid.BindingSourceDataSource = Nothing
+        Me.TennantGrid.CancellationSource = Nothing
+        Me.TennantGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.TennantGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TennantGrid.HynrSettings = Nothing
+        Me.TennantGrid.IsBusy = False
+        Me.TennantGrid.Location = New System.Drawing.Point(0, 0)
+        Me.TennantGrid.Name = "TennantGrid"
+        Me.TennantGrid.SelectedItem = Nothing
+        Me.TennantGrid.SelectedItems = Nothing
+        Me.TennantGrid.Size = New System.Drawing.Size(158, 345)
+        Me.TennantGrid.TabIndex = 0
+        '
+        'RoomGrid
+        '
+        Me.RoomGrid.AllowUserToAddRows = False
+        Me.RoomGrid.AllowUserToDeleteRows = False
+        Me.RoomGrid.BindingSourceDataSource = Nothing
+        Me.RoomGrid.CancellationSource = Nothing
+        Me.RoomGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.RoomGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RoomGrid.HynrSettings = Nothing
+        Me.RoomGrid.IsBusy = False
+        Me.RoomGrid.Location = New System.Drawing.Point(0, 0)
+        Me.RoomGrid.Name = "RoomGrid"
+        Me.RoomGrid.SelectedItem = Nothing
+        Me.RoomGrid.SelectedItems = Nothing
+        Me.RoomGrid.Size = New System.Drawing.Size(898, 385)
+        Me.RoomGrid.TabIndex = 0
+        '
+        'RentGrid
+        '
+        Me.RentGrid.AllowUserToAddRows = False
+        Me.RentGrid.AllowUserToDeleteRows = False
+        Me.RentGrid.BindingSourceDataSource = Nothing
+        Me.RentGrid.CancellationSource = Nothing
+        Me.RentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.RentGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RentGrid.HynrSettings = Nothing
+        Me.RentGrid.IsBusy = False
+        Me.RentGrid.Location = New System.Drawing.Point(0, 0)
+        Me.RentGrid.Name = "RentGrid"
+        Me.RentGrid.SelectedItem = Nothing
+        Me.RentGrid.SelectedItems = Nothing
+        Me.RentGrid.Size = New System.Drawing.Size(898, 385)
+        Me.RentGrid.TabIndex = 0
+        '
+        'RunningCostGrid
+        '
+        Me.RunningCostGrid.AllowUserToAddRows = False
+        Me.RunningCostGrid.AllowUserToDeleteRows = False
+        Me.RunningCostGrid.BindingSourceDataSource = Nothing
+        Me.RunningCostGrid.CancellationSource = Nothing
+        Me.RunningCostGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.RunningCostGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RunningCostGrid.HynrSettings = Nothing
+        Me.RunningCostGrid.IsBusy = False
+        Me.RunningCostGrid.Location = New System.Drawing.Point(0, 0)
+        Me.RunningCostGrid.Name = "RunningCostGrid"
+        Me.RunningCostGrid.SelectedItem = Nothing
+        Me.RunningCostGrid.SelectedItems = Nothing
+        Me.RunningCostGrid.Size = New System.Drawing.Size(898, 385)
+        Me.RunningCostGrid.TabIndex = 0
+        '
+        'FlatIncomeGrid
+        '
+        Me.FlatIncomeGrid.AllowUserToAddRows = False
+        Me.FlatIncomeGrid.AllowUserToDeleteRows = False
+        Me.FlatIncomeGrid.BindingSourceDataSource = Nothing
+        Me.FlatIncomeGrid.CancellationSource = Nothing
+        Me.FlatIncomeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.FlatIncomeGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlatIncomeGrid.HynrSettings = Nothing
+        Me.FlatIncomeGrid.IsBusy = False
+        Me.FlatIncomeGrid.Location = New System.Drawing.Point(0, 0)
+        Me.FlatIncomeGrid.Name = "FlatIncomeGrid"
+        Me.FlatIncomeGrid.SelectedItem = Nothing
+        Me.FlatIncomeGrid.SelectedItems = Nothing
+        Me.FlatIncomeGrid.Size = New System.Drawing.Size(898, 385)
+        Me.FlatIncomeGrid.TabIndex = 0
+        '
+        'ContractGrid
+        '
+        Me.ContractGrid.AllowUserToAddRows = False
+        Me.ContractGrid.AllowUserToDeleteRows = False
+        Me.ContractGrid.BindingSourceDataSource = Nothing
+        Me.ContractGrid.CancellationSource = Nothing
+        Me.ContractGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ContractGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ContractGrid.HynrSettings = Nothing
+        Me.ContractGrid.IsBusy = False
+        Me.ContractGrid.Location = New System.Drawing.Point(0, 0)
+        Me.ContractGrid.Name = "ContractGrid"
+        Me.ContractGrid.SelectedItem = Nothing
+        Me.ContractGrid.SelectedItems = Nothing
+        Me.ContractGrid.Size = New System.Drawing.Size(299, 343)
+        Me.ContractGrid.TabIndex = 0
+        '
+        'RentedRoomGrid
+        '
+        Me.RentedRoomGrid.AllowUserToAddRows = False
+        Me.RentedRoomGrid.AllowUserToDeleteRows = False
+        Me.RentedRoomGrid.BindingSourceDataSource = Nothing
+        Me.RentedRoomGrid.CancellationSource = Nothing
+        Me.RentedRoomGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.RentedRoomGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RentedRoomGrid.HynrSettings = Nothing
+        Me.RentedRoomGrid.IsBusy = False
+        Me.RentedRoomGrid.Location = New System.Drawing.Point(0, 0)
+        Me.RentedRoomGrid.Name = "RentedRoomGrid"
+        Me.RentedRoomGrid.SelectedItem = Nothing
+        Me.RentedRoomGrid.SelectedItems = Nothing
+        Me.RentedRoomGrid.Size = New System.Drawing.Size(595, 177)
+        Me.RentedRoomGrid.TabIndex = 0
+        '
         'SharedRunningCostGrid
         '
         Me.SharedRunningCostGrid.AllowUserToAddRows = False
@@ -488,9 +492,26 @@ Partial Class FlatMateForm
         Me.SharedRunningCostGrid.Location = New System.Drawing.Point(0, 0)
         Me.SharedRunningCostGrid.Name = "SharedRunningCostGrid"
         Me.SharedRunningCostGrid.SelectedItem = Nothing
-        Me.SharedRunningCostGrid.SelectedItems = CType(resources.GetObject("SharedRunningCostGrid.SelectedItems"), System.Collections.Generic.List(Of FlatMateNextGen.SharedRunningCostsItemViewModel))
+        Me.SharedRunningCostGrid.SelectedItems = Nothing
         Me.SharedRunningCostGrid.Size = New System.Drawing.Size(595, 162)
         Me.SharedRunningCostGrid.TabIndex = 0
+        '
+        'PaymentGrid
+        '
+        Me.PaymentGrid.AllowUserToAddRows = False
+        Me.PaymentGrid.AllowUserToDeleteRows = False
+        Me.PaymentGrid.BindingSourceDataSource = Nothing
+        Me.PaymentGrid.CancellationSource = Nothing
+        Me.PaymentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PaymentGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PaymentGrid.HynrSettings = Nothing
+        Me.PaymentGrid.IsBusy = False
+        Me.PaymentGrid.Location = New System.Drawing.Point(0, 0)
+        Me.PaymentGrid.Name = "PaymentGrid"
+        Me.PaymentGrid.SelectedItem = Nothing
+        Me.PaymentGrid.SelectedItems = CType(resources.GetObject("PaymentGrid.SelectedItems"), System.Collections.Generic.List(Of FlatMateNextGen.PaymentItemViewModel))
+        Me.PaymentGrid.Size = New System.Drawing.Size(898, 343)
+        Me.PaymentGrid.TabIndex = 0
         '
         'FlatMateForm
         '
@@ -513,19 +534,13 @@ Partial Class FlatMateForm
         Me.SplitContainerLeft.Panel2.ResumeLayout(False)
         CType(Me.SplitContainerLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerLeft.ResumeLayout(False)
-        CType(Me.FlatGrid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TennantGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControlMain.ResumeLayout(False)
         Me.FlatDetailsTabPage.ResumeLayout(False)
         Me.TabControlDetails.ResumeLayout(False)
         Me.RoomsTabPage.ResumeLayout(False)
-        CType(Me.RoomGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RentTabPage.ResumeLayout(False)
-        CType(Me.RentGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RunningCostsTabPage.ResumeLayout(False)
-        CType(Me.RunningCostGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.IncomeTabPage.ResumeLayout(False)
-        CType(Me.FlatIncomeGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TennantsTabPage.ResumeLayout(False)
         Me.TabControlTennants.ResumeLayout(False)
         Me.ContractsTabPage.ResumeLayout(False)
@@ -533,13 +548,21 @@ Partial Class FlatMateForm
         Me.SplitContainerContracts.Panel2.ResumeLayout(False)
         CType(Me.SplitContainerContracts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerContracts.ResumeLayout(False)
-        CType(Me.ContractGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerContractDetails.Panel1.ResumeLayout(False)
         Me.SplitContainerContractDetails.Panel2.ResumeLayout(False)
         CType(Me.SplitContainerContractDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerContractDetails.ResumeLayout(False)
+        Me.PaymentsTabPage.ResumeLayout(False)
+        CType(Me.FlatGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TennantGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RoomGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RentGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RunningCostGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FlatIncomeGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ContractGrid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RentedRoomGrid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SharedRunningCostGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PaymentGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -575,4 +598,5 @@ Partial Class FlatMateForm
     Friend WithEvents SplitContainerContractDetails As SplitContainer
     Friend WithEvents RentedRoomGrid As RentedRoomGrid
     Friend WithEvents SharedRunningCostGrid As SharedRunningCostGrid
+    Friend WithEvents PaymentGrid As PaymentGrid
 End Class
