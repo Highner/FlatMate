@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d8c3c694343941d28560c79af467f87f" Name="Diagram1" ZoomLevel="101">
+        <EntityTypeShape EntityType="FlatMateDBModel.Contract" Width="1.5" PointX="11.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.FlatIncome" Width="1.5" PointX="16.875" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.Flat" Width="1.5" PointX="16.875" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.Payment" Width="1.5" PointX="14.625" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.Rent" Width="1.5" PointX="19.375" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.Room" Width="1.5" PointX="14.125" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.RunningCost" Width="1.5" PointX="17" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlatMateDBModel.Tennant" Width="1.5" PointX="11.625" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="FlatMateDBModel.FK_Contracts_Tennants" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.FK_FlatIncome_Flats" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.FK_Rents_Flats" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.FK_Rooms_Flats" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.FK_RunningCosts_Flats" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.FK_Tennants_Flats" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.FK_Payments_Tennants" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.ContractRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="FlatMateDBModel.TennantContractRunningCost" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

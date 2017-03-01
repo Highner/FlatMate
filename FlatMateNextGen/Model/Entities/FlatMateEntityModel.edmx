@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FlatMateDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ContractRoom">
+          <Key>
+            <PropertyRef Name="ContractID" />
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="ContractID" Type="int" Nullable="false" />
+          <Property Name="RoomID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TennantID" Type="int" />
+          <Property Name="ValidFrom" Type="datetime" />
+          <Property Name="ValidTo" Type="datetime" />
+          <Property Name="RentModifier" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FixedRent" Type="bit" />
+          <Property Name="FixedRentAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Settled" Type="bit" />
+        </EntityType>
+        <EntityType Name="FlatIncome">
+          <Key>
+            <PropertyRef Name="IncomeID" />
+          </Key>
+          <Property Name="IncomeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Remarks" Type="text" />
+          <Property Name="FlatID" Type="int" />
+        </EntityType>
+        <EntityType Name="Flats">
+          <Key>
+            <PropertyRef Name="FlatID" />
+          </Key>
+          <Property Name="FlatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlatName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TennantID" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PaymentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rents">
+          <Key>
+            <PropertyRef Name="RentID" />
+          </Key>
+          <Property Name="RentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="ValidFrom" Type="datetime" />
+          <Property Name="ValidTo" Type="datetime" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="Size" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CalculationSize" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RunningCosts">
+          <Key>
+            <PropertyRef Name="RunningCostID" />
+          </Key>
+          <Property Name="RunningCostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ValidFrom" Type="datetime" />
+          <Property Name="ValidTo" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TennantContractRunningCost">
+          <Key>
+            <PropertyRef Name="ContractID" />
+            <PropertyRef Name="RunningCostID" />
+          </Key>
+          <Property Name="ContractID" Type="int" Nullable="false" />
+          <Property Name="RunningCostID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tennants">
+          <Key>
+            <PropertyRef Name="TennantID" />
+          </Key>
+          <Property Name="TennantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Settled" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Contracts_Tennants">
+          <End Role="Tennants" Type="Self.Tennants" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tennants">
+              <PropertyRef Name="TennantID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="TennantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlatIncome_Flats">
+          <End Role="Flats" Type="Self.Flats" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FlatIncome" Type="Self.FlatIncome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="FlatIncome">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Tennants">
+          <End Role="Tennants" Type="Self.Tennants" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tennants">
+              <PropertyRef Name="TennantID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="TennantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rents_Flats">
+          <End Role="Flats" Type="Self.Flats" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_Flats">
+          <End Role="Flats" Type="Self.Flats" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningCosts_Flats">
+          <End Role="Flats" Type="Self.Flats" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RunningCosts" Type="Self.RunningCosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="RunningCosts">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TennantContractRoom_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ContractRoom" Type="Self.ContractRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractRoom">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TennantContractRoom_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ContractRoom" Type="Self.ContractRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="ContractRoom">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TennantContractRunningCost_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TennantContractRunningCost" Type="Self.TennantContractRunningCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="TennantContractRunningCost">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TennantContractRunningCost_RunningCosts">
+          <End Role="RunningCosts" Type="Self.RunningCosts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TennantContractRunningCost" Type="Self.TennantContractRunningCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunningCosts">
+              <PropertyRef Name="RunningCostID" />
+            </Principal>
+            <Dependent Role="TennantContractRunningCost">
+              <PropertyRef Name="RunningCostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tennants_Flats">
+          <End Role="Flats" Type="Self.Flats" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tennants" Type="Self.Tennants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="Tennants">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlatMateDBModelStoreContainer">
+          <EntitySet Name="ContractRoom" EntityType="Self.ContractRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlatIncome" EntityType="Self.FlatIncome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flats" EntityType="Self.Flats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rents" EntityType="Self.Rents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RunningCosts" EntityType="Self.RunningCosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TennantContractRunningCost" EntityType="Self.TennantContractRunningCost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tennants" EntityType="Self.Tennants" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contracts_Tennants" Association="Self.FK_Contracts_Tennants">
+            <End Role="Tennants" EntitySet="Tennants" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatIncome_Flats" Association="Self.FK_FlatIncome_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="FlatIncome" EntitySet="FlatIncome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Tennants" Association="Self.FK_Payments_Tennants">
+            <End Role="Tennants" EntitySet="Tennants" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rents_Flats" Association="Self.FK_Rents_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_Flats" Association="Self.FK_Rooms_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningCosts_Flats" Association="Self.FK_RunningCosts_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="RunningCosts" EntitySet="RunningCosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TennantContractRoom_Contracts" Association="Self.FK_TennantContractRoom_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractRoom" EntitySet="ContractRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TennantContractRoom_Rooms" Association="Self.FK_TennantContractRoom_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="ContractRoom" EntitySet="ContractRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TennantContractRunningCost_Contracts" Association="Self.FK_TennantContractRunningCost_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="TennantContractRunningCost" EntitySet="TennantContractRunningCost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TennantContractRunningCost_RunningCosts" Association="Self.FK_TennantContractRunningCost_RunningCosts">
+            <End Role="RunningCosts" EntitySet="RunningCosts" />
+            <End Role="TennantContractRunningCost" EntitySet="TennantContractRunningCost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tennants_Flats" Association="Self.FK_Tennants_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="Tennants" EntitySet="Tennants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FlatMateDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TennantID" Type="Int32" />
+          <Property Name="ValidFrom" Type="DateTime" Precision="3" />
+          <Property Name="ValidTo" Type="DateTime" Precision="3" />
+          <Property Name="RentModifier" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FixedRent" Type="Boolean" />
+          <Property Name="FixedRentAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Settled" Type="Boolean" />
+          <NavigationProperty Name="Tennant" Relationship="Self.FK_Contracts_Tennants" FromRole="Contracts" ToRole="Tennants" />
+          <NavigationProperty Name="Rooms" Relationship="Self.ContractRoom" FromRole="Contracts" ToRole="Rooms" />
+          <NavigationProperty Name="RunningCosts" Relationship="Self.TennantContractRunningCost" FromRole="Contracts" ToRole="RunningCosts" />
+        </EntityType>
+        <EntityType Name="FlatIncome">
+          <Key>
+            <PropertyRef Name="IncomeID" />
+          </Key>
+          <Property Name="IncomeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FlatID" Type="Int32" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_FlatIncome_Flats" FromRole="FlatIncome" ToRole="Flats" />
+        </EntityType>
+        <EntityType Name="Flat">
+          <Key>
+            <PropertyRef Name="FlatID" />
+          </Key>
+          <Property Name="FlatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FlatIncomes" Relationship="Self.FK_FlatIncome_Flats" FromRole="Flats" ToRole="FlatIncome" />
+          <NavigationProperty Name="Rents" Relationship="Self.FK_Rents_Flats" FromRole="Flats" ToRole="Rents" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Rooms_Flats" FromRole="Flats" ToRole="Rooms" />
+          <NavigationProperty Name="RunningCosts" Relationship="Self.FK_RunningCosts_Flats" FromRole="Flats" ToRole="RunningCosts" />
+          <NavigationProperty Name="Tennants" Relationship="Self.FK_Tennants_Flats" FromRole="Flats" ToRole="Tennants" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TennantID" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tennant" Relationship="Self.FK_Payments_Tennants" FromRole="Payments" ToRole="Tennants" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="RentID" />
+          </Key>
+          <Property Name="RentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="ValidFrom" Type="DateTime" Precision="3" />
+          <Property Name="ValidTo" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_Rents_Flats" FromRole="Rents" ToRole="Flats" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="Size" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CalculationSize" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_Rooms_Flats" FromRole="Rooms" ToRole="Flats" />
+          <NavigationProperty Name="Contracts" Relationship="Self.ContractRoom" FromRole="Rooms" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="RunningCost">
+          <Key>
+            <PropertyRef Name="RunningCostID" />
+          </Key>
+          <Property Name="RunningCostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ValidFrom" Type="DateTime" Precision="3" />
+          <Property Name="ValidTo" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_RunningCosts_Flats" FromRole="RunningCosts" ToRole="Flats" />
+          <NavigationProperty Name="Contracts" Relationship="Self.TennantContractRunningCost" FromRole="RunningCosts" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Tennant">
+          <Key>
+            <PropertyRef Name="TennantID" />
+          </Key>
+          <Property Name="TennantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Settled" Type="Boolean" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_Tennants" FromRole="Tennants" ToRole="Contracts" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_Tennants_Flats" FromRole="Tennants" ToRole="Flats" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Tennants" FromRole="Tennants" ToRole="Payments" />
+        </EntityType>
+        <Association Name="FK_Contracts_Tennants">
+          <End Role="Tennants" Type="Self.Tennant" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tennants">
+              <PropertyRef Name="TennantID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="TennantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlatIncome_Flats">
+          <End Role="Flats" Type="Self.Flat" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FlatIncome" Type="Self.FlatIncome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="FlatIncome">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rents_Flats">
+          <End Role="Flats" Type="Self.Flat" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rents" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_Flats">
+          <End Role="Flats" Type="Self.Flat" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningCosts_Flats">
+          <End Role="Flats" Type="Self.Flat" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RunningCosts" Type="Self.RunningCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="RunningCosts">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tennants_Flats">
+          <End Role="Flats" Type="Self.Flat" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tennants" Type="Self.Tennant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flats">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="Tennants">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Tennants">
+          <End Role="Tennants" Type="Self.Tennant" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tennants">
+              <PropertyRef Name="TennantID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="TennantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ContractRoom">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+        </Association>
+        <Association Name="TennantContractRunningCost">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <End Role="RunningCosts" Type="Self.RunningCost" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="FlatIncomes" EntityType="Self.FlatIncome" />
+          <EntitySet Name="Flats" EntityType="Self.Flat" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Rents" EntityType="Self.Rent" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="RunningCosts" EntityType="Self.RunningCost" />
+          <EntitySet Name="Tennants" EntityType="Self.Tennant" />
+          <AssociationSet Name="FK_Contracts_Tennants" Association="Self.FK_Contracts_Tennants">
+            <End Role="Tennants" EntitySet="Tennants" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatIncome_Flats" Association="Self.FK_FlatIncome_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="FlatIncome" EntitySet="FlatIncomes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rents_Flats" Association="Self.FK_Rents_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_Flats" Association="Self.FK_Rooms_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningCosts_Flats" Association="Self.FK_RunningCosts_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="RunningCosts" EntitySet="RunningCosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tennants_Flats" Association="Self.FK_Tennants_Flats">
+            <End Role="Flats" EntitySet="Flats" />
+            <End Role="Tennants" EntitySet="Tennants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Tennants" Association="Self.FK_Payments_Tennants">
+            <End Role="Tennants" EntitySet="Tennants" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="ContractRoom" Association="Self.ContractRoom">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="TennantContractRunningCost" Association="Self.TennantContractRunningCost">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="RunningCosts" EntitySet="RunningCosts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FlatMateDBModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="FlatMateDBModel.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="TennantID" ColumnName="TennantID" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="RentModifier" ColumnName="RentModifier" />
+                <ScalarProperty Name="FixedRent" ColumnName="FixedRent" />
+                <ScalarProperty Name="FixedRentAmount" ColumnName="FixedRentAmount" />
+                <ScalarProperty Name="Settled" ColumnName="Settled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlatIncomes">
+            <EntityTypeMapping TypeName="FlatMateDBModel.FlatIncome">
+              <MappingFragment StoreEntitySet="FlatIncome">
+                <ScalarProperty Name="IncomeID" ColumnName="IncomeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flats">
+            <EntityTypeMapping TypeName="FlatMateDBModel.Flat">
+              <MappingFragment StoreEntitySet="Flats">
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="FlatName" ColumnName="FlatName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="FlatMateDBModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="TennantID" ColumnName="TennantID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rents">
+            <EntityTypeMapping TypeName="FlatMateDBModel.Rent">
+              <MappingFragment StoreEntitySet="Rents">
+                <ScalarProperty Name="RentID" ColumnName="RentID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="FlatMateDBModel.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="CalculationSize" ColumnName="CalculationSize" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunningCosts">
+            <EntityTypeMapping TypeName="FlatMateDBModel.RunningCost">
+              <MappingFragment StoreEntitySet="RunningCosts">
+                <ScalarProperty Name="RunningCostID" ColumnName="RunningCostID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tennants">
+            <EntityTypeMapping TypeName="FlatMateDBModel.Tennant">
+              <MappingFragment StoreEntitySet="Tennants">
+                <ScalarProperty Name="TennantID" ColumnName="TennantID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Settled" ColumnName="Settled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ContractRoom" TypeName="FlatMateDBModel.ContractRoom" StoreEntitySet="ContractRoom">
+            <EndProperty Name="Contracts">
+              <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+            </EndProperty>
+            <EndProperty Name="Rooms">
+              <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TennantContractRunningCost" TypeName="FlatMateDBModel.TennantContractRunningCost" StoreEntitySet="TennantContractRunningCost">
+            <EndProperty Name="Contracts">
+              <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+            </EndProperty>
+            <EndProperty Name="RunningCosts">
+              <ScalarProperty Name="RunningCostID" ColumnName="RunningCostID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
